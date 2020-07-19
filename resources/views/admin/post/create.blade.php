@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="form-group" @if ( $errors->has('category') ) has-error @endif>
-                        {!!Form::label('Categoria')!!}
+                        {!!Form::label('Categorias')!!}
                         {!!Form::select('category_id[]',$categories,null,['class' => 'form-control', 'id' => 'category_id' ,'multiple' => 'multiple'])!!}
                         @if ( $errors->has('category_id') )
                             <span class="help-block">{!!$errors->first('category_id')!!}</span>
@@ -83,6 +83,6 @@
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'details' );
-        $('#category_id').select2();
+        $('#category_id').select2({placeholder:"Insertar Categorias"});
     </script>
 @endsection

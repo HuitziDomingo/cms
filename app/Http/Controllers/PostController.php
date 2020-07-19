@@ -38,7 +38,37 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'thumbnail' => 'required',
+            'title' => 'required|unique:posts',
+            'details' => 'required',
+            'category_id' => 'required',
+        ],
+
+        [
+            'thumbnail.required' => 'Introducir URL de la Miniatura',
+            'title.required' => 'Introducir titulo',
+            'title.unique' => 'El titulo ya existe',
+            'details.required' => 'Introduzca detalles',
+            'category_id.unique' => 'Seleccione la categoria',
+        ]);
+
+        $post = new Post();
+        $post->thumbnail = $request->thumbnail;
+        $post->user_id = Auth::id();
+        $post->title = $request->title;
+        $post->sub_title = $request->sub_title;
+        $post->details = $request->details;
+        $post->post_type = 'post';
+        $post->slug = str_slug($request->slug);
+        $post->is_published = $request->is_published;
+        $post->save();
+
+        $post->categories()->sync($request->category_id,false);
+
+        Session::flash('message','Post creado Satisfactoriamente');
+        return redirect()->route('posts.index');
+
     }
 
     /**
