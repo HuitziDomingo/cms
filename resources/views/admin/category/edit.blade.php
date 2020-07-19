@@ -26,6 +26,14 @@
                         @endif
                     </div>
 
+                    <div class="form-group" @if ( $errors->has('slug') ) has-error @endif>
+                        {!!Form::label('Slug')!!}
+                        {!!Form::text('slug',null,['class' => 'form-control', 'placeholder' => 'Slug'])!!}
+                        @if ( $errors->has('slug') )
+                            <span class="help-block">{!!$errors->first('slug')!!}</span>
+                        @endif
+                    </div>
+
                     <div class="form-group" @if ( $errors->has('thumbnail') ) has-error @endif>
                         {!!Form::label('Publicador')!!}
                         {!!Form::select('is_published',[1 => 'Publicar', 0 => 'Borrar'],isset($category->is_published) ? $category->is_published : null,['class' => 'form-control'])!!}

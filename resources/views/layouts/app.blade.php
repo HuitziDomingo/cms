@@ -19,12 +19,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    @yield('stylesheet')
 
     <style>
         .flx-cent{display: flex; justify-content: center; align-items: center;}
     </style>
 
+    @yield('stylesheet')
 </head>
 <body>
     <div id="app">

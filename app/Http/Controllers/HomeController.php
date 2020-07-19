@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('id','DESC')->limit(3)->get();
-        $posts = Post::orderBy('id','DESC')->where('post_type','post')->limit(3)->get();
-        $pages = Post::orderBy('id','DESC')->where('post_type','page')->limit(3)->get();
+        $categories = Category::orderBy('id','DESC')->limit(6)->get();
+        $posts = Post::orderBy('id','DESC')->where('post_type','post')->limit(6)->get();
+        $pages = Post::orderBy('id','DESC')->where('post_type','page')->limit(6)->get();
         return view('admin.index',['categories' => $categories,'posts' => $posts, 'pages' => $pages]);
     }
 }
